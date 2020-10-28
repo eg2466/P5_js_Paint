@@ -12,11 +12,17 @@ let fill_checkbox;
 
 function preload() {
     
-//    bkg_img = loadImage('img/bkg.png');
-    
     pen_img = loadImage('img/pen.png');
     eraser_img = loadImage('img/eraser.png');
     close_img =  loadImage('img/close.png');
+    
+    //fonts
+    basker_font = loadFont('fonts/Baskervville-Regular.ttf');
+    mont_font = loadFont('fonts/Montserrat-Regular.ttf');
+    open_font = loadFont('fonts/OpenSans-Regular.ttf');
+    play_font = loadFont('fonts/PlayfairDisplay-Regular.ttf');
+    roboto_font = loadFont('fonts/Roboto-Regular.ttf');
+    
 }
 
 
@@ -25,11 +31,6 @@ function setup() {
   
     frameRate(60);
     
-    //background(255);
-    
-    
-    
-    
     
     //clear sketch button
     clearSketchBtn = createButton('clear');
@@ -37,10 +38,6 @@ function setup() {
     clearSketchBtn.mousePressed(clearpg);
     clearSketchBtn.style('width', '80px');
     clearSketchBtn.style('height', '50px');
-//    clearSketchBtn.style('background-color', '#c65052');
-//    clearSketchBtn.style('color', '#ffffff');
-//    clearSketchBtn.style('border', 'none');
-//    clearSketchBtn.style('border-radius', '2px');
     
     //color picker - https://p5js.org/reference/#/p5/createColorPicker
     colorPicker = createColorPicker('#ff52ad');
@@ -48,40 +45,39 @@ function setup() {
     colorPicker.style('height', '50px');
     
     //fill_checkbox
-    fill_checkbox = createCheckbox('Fill', false);
+    fill_checkbox = createCheckbox('FILL', false);
     
     //text input
     text_input = createInput('');
     text_input.style('width', '90px');
-//    text_input_chk = createCheckbox('Apply Text', false);
-    //text_input.mousePressed(insert_text);
+
     
-//    text('Font Size :', 5, height-450);
-    
-    // text_input_btn = createButton('Enter');
-    // text_input_btn.style('width', '98px');
-    // text_input_btn.mousePressed(insert_text);
 
     radio_func();
     pen_sketch();
     rect_sketch();
     circ_sketch();
     eraser_sketch();
-//    tri_sketch();
     create_select();
+    
+    
+    
+    
+    //font select
+    font_sel = createSelect();
+    // font_sel.option('Baskervville', basker_font);
+  font_sel.option('Baskervville', "basker_font");
+    font_sel.option('Montserrat', "mont_font");
+    font_sel.option('OpenSans', "open_font");
+    font_sel.option('PlayfairDisplay', "play_font");
+    font_sel.option('Roboto', "roboto_font");
+    font_sel.style('width', '100px');
+    
+    
     
 //    bottomBar();
     resposBar(); 
-    
-//    image(eraser_img, 150, height-70);
-    
-    //let window_rect = createGraphics(width, height);
-    
-    //window_rect.fill(255, 0, 0);
-    //window_rect.rect(0,0, width, height);
-    //bkg_img.mask(window_rect);
-    
-//    bkg_img.resize(width, height);
+
     
 }
 
@@ -96,33 +92,18 @@ function insert_text(){
 
 function mouseDragged() {
     
-    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio2.value() === "pen" ){
-        // print("helelel")
+    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio2.value() === "PEN" ){
         strokeWeight(pen_size_slider.value());
         stroke(colorPicker.color());
       //reference to create drawing  - https://p5js.org/reference/#/p5/pmouseX
         line(mouseX, mouseY, pmouseX, pmouseY);
         
-//        strokeWeight(1);
-//        stroke (colorPicker.color())
-//        fill(colorPicker.color())
-//        rect(80, 140, 20, 20);
-//        circle(90, 220, 20, 20);
     }
   
-    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio1.value() === "eraser" ){
-        // print("helelel")
+    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio1.value() === "ERASER" ){
         strokeWeight(er_size_slider.value());
         stroke(255);
         line(mouseX, mouseY, pmouseX, pmouseY);
-        
-//        strokeWeight(1);
-//        stroke (colorPicker.color())
-//            if (fill_checkbox.checked()){
-//        fill(colorPicker.color());
-//    }else{fill(255);}
-//        rect(80, 140, 20, 20);
-//        circle(90, 220, 20, 20);
     }
 
 }
@@ -138,7 +119,7 @@ function mousePressed() {
     }else{fill(255);}
     
     //draw rect
-      if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio3.value() === "rect" ){
+      if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio3.value() === "RECT" ){
          //fill(255);
         strokeWeight(2);
         stroke(colorPicker.color());
@@ -148,7 +129,7 @@ function mousePressed() {
     
     
     //draw circle
-    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio4.value() === "circle" ){
+    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio4.value() === "CIRC" ){
         //fill(255);
         strokeWeight(2);
         stroke(colorPicker.color());
@@ -158,7 +139,23 @@ function mousePressed() {
     
     
     //draw text
-    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio5.value() === "text"){
+    if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio5.value() === "TEXT"){
+        
+    if (font_sel.value() === "basker_font"){
+    textFont(basker_font);
+    }
+      if (font_sel.value() === "mont_font"){
+    textFont(mont_font);
+    }
+      if (font_sel.value() === "open_font"){
+    textFont(open_font);
+    }
+      if (font_sel.value() === "play_font"){
+    textFont(play_font);
+    }
+      if (font_sel.value() === "roboto_font"){
+    textFont(roboto_font);
+    }
         strokeWeight(3);
         stroke(colorPicker.color());
         textSize(text_size_val);
@@ -184,45 +181,68 @@ function clearpg(){
 
 
 function draw() {  
-//    print(mouseX, mouseY);
-    //uncomment
-//    image(bkg_img, 0, 0);
-//    resposBar(); 
+    print(font_sel.value());
 
     bottomBar();
     textSize(font_size_sel.value());
-//    print(colorPicker.color()); 
-    //print(text_arr);
-//    print(font_size_sel.value());
+
     
     
     push();
-            strokeWeight(2);
+        strokeWeight(2);
         stroke (colorPicker.color())
             if (fill_checkbox.checked()){
         fill(colorPicker.color());
-    }else{fill(255);}
-        rect(80, 140, 20, 20);
-        circle(90, 220, 20, 20);
+        }else{
+            fill(255);
+        }
+        rect(90, 150, 20, 20);
+        circle(100, 230, 20, 20);
     
-//    rect(80, 140, 20, 20);
-//
-//    
-//    
-//    circle(90, 220, 20, 20);
+  
+  
+  
+    //   basker_font = loadFont('fonts/Baskervville-Regular.ttf');
+    // mont_font = loadFont('fonts/Montserrat-Regular.ttf');
+    // open_font = loadFont('fonts/OpenSans-Regular.ttf');
+    // play_font = loadFont('fonts/PlayfairDisplay-Regular.ttf');
+    // roboto_font = loadFont('fonts/Roboto-Regular.ttf');
+  
+  
+  
+    if (font_sel.value() === "basker_font"){
+    textFont(basker_font);
+    }
+      if (font_sel.value() === "mont_font"){
+    textFont(mont_font);
+    }
+      if (font_sel.value() === "open_font"){
+    textFont(open_font);
+    }
+      if (font_sel.value() === "play_font"){
+    textFont(play_font);
+    }
+      if (font_sel.value() === "roboto_font"){
+    textFont(roboto_font);
+    }
+    textSize(16);
+    text("ABC", 85, 65);
+    
     pop();
     
-    if(radio2.value() === "pen"){
-        image(pen_img, 330, height-110);
-        image(eraser_img, 210, height-95);
+    
+    
+    if(radio2.value() === "PEN"){
+        image(pen_img, 340, height-110);
+        image(eraser_img, 220, height-95);
     }
-    else if(radio1.value() === "eraser"){
-        image(pen_img, 330, height-100);
-        image(eraser_img, 210, height-110);
+    else if(radio1.value() === "ERASER"){
+        image(pen_img, 340, height-100);
+        image(eraser_img, 220, height-110);
     }
     else{
-        image(pen_img, 330, height-100);
-        image(eraser_img, 210, height-95);   
+        image(pen_img, 340, height-100);
+        image(eraser_img, 220, height-95);   
     }
 
     
@@ -237,43 +257,37 @@ function resposBar() {
     
     radio5.position(17, 50);
     text_input.position(20, 70);
-    font_size_sel.position(17, 95);
-
-
-    //font_text.position(15, height-450);
-
-  
-    //radio3 - rect
-    radio3.position(17, 140);  
-    rect_size_slider.position(17, 165);
+    font_sel.position(20, 95);
+    font_size_sel.position(17, 115);
     
   
+    //radio3 - rect
+    radio3.position(17, 150);  
+    rect_size_slider.position(17, 170);
     
     
     //radio4 - circle
-    radio4.position(17, 210);  
-    circle_size_slider.position(17, 235);
-  
-    //radio5 - triangle
-//    radio5.position(5, height-160);  
-//    tri_size_slider.position(5, height-140);
+    radio4.position(17, 220);  
+    circle_size_slider.position(17, 240);
     
+    
+    //////////////////////////////////////
     colorPicker.position(20, height-100);
     
     fill_checkbox.position(17, height-45);
     
     
+    
+    /////////////////////////////////////////
         //radio1 - eraser
-    radio1.position(145, height-70);
-    er_size_slider.position(140, height-50);
+    radio1.position(135, height-70);
+    er_size_slider.position(135, height-50);
   
     
     //radio2 - pen
-    radio2.position(270, height-70);
-    pen_size_slider.position(265, height-50);
-//      radio2.position(width-200, height-70);
-//    pen_size_slider.position(265, height-50);
-    
+    radio2.position(275, height-70);
+    pen_size_slider.position(275, height-50);
+
     
     //clear btn
     clearSketchBtn.position(width-100, height-90);
@@ -285,9 +299,6 @@ function resposBar() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-//    clear();
-//    bkg_img.resize(width, height);
-//    bottomBar();
   resposBar(); 
   
 }

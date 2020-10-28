@@ -10,6 +10,7 @@ let rect_size_slider;
 let circle_size_slider;
 
 let font_size_sel;
+let font_sel;
 
 function create_select(){
 //    font_size_sel = createSelect();
@@ -35,7 +36,7 @@ function create_select(){
     
     
     font_size_sel = createSlider(10, 120, 10, 10);
-    font_size_sel.style('width', '90px');
+    font_size_sel.style('width', '100px');
 }
 
 
@@ -48,11 +49,11 @@ function radio_func(){
     radio4 = createRadio();
     radio5 = createRadio();
   
-    radio1.option('eraser');
-    radio2.option('pen');
-    radio3.option('rect');
-    radio4.option('circle');
-    radio5.option('text');
+    radio1.option('ERASER');
+    radio2.option('PEN');
+    radio3.option('RECT');
+    radio4.option('CIRC');
+    radio5.option('TEXT');
     
     
     //radio1.style('margin', '0px 40px 0px 70px')
@@ -62,25 +63,25 @@ function radio_func(){
 function eraser_sketch(){
     //pen_size_slider = createSlider();
     er_size_slider = createSlider(5, 80, 5, 5);
-    er_size_slider.style('width', '90px');
+    er_size_slider.style('width', '110px');
 }
 
 function pen_sketch(){
     //pen_size_slider = createSlider();
     pen_size_slider = createSlider(5, 80, 5, 5);
-    pen_size_slider.style('width', '90px');
+    pen_size_slider.style('width', '110px');
 }
 
 function rect_sketch(){
     //pen_size_slider = createSlider();
     rect_size_slider = createSlider(20, 100, 20, 10);
-    rect_size_slider.style('width', '90px'); 
+    rect_size_slider.style('width', '100px'); 
 }
 
 function circ_sketch(){
     //pen_size_slider = createSlider();
     circle_size_slider = createSlider(20, 100, 20, 10);
-    circle_size_slider.style('width', '90px'); 
+    circle_size_slider.style('width', '100px'); 
 }
 
 
@@ -105,7 +106,7 @@ function bottomBar(){
         strokeWeight(1);
         fill(236, 233, 216);
         stroke(172, 168, 153);
-        rect(5, 40, 130, height-149);
+        rect(5, 40, 130, height-151);
     
         rect(5, 41+height-150, width-10, 85);
     
