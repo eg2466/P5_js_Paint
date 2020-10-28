@@ -105,7 +105,7 @@ function bottomBar(){
         strokeWeight(1);
         fill(236, 233, 216);
         stroke(172, 168, 153);
-        rect(5, 41, 130, height-150);
+        rect(5, 40, 130, height-149);
     
         rect(5, 41+height-150, width-10, 85);
     
@@ -128,7 +128,7 @@ function bottomBar(){
         noFill();
         stroke(128, 128, 128)
         strokeWeight(4);
-        rect(137, 42, width-143, height-154);
+        rect(137, 42, width-143, height-153);
     
     
         //clear red button

@@ -5,3 +5,17 @@ html, body {
 canvas {
   display: block;
 }
+
+#clear-btn{
+/*    background-color: #c65052 ;*/
+    background-color: #c65052 ;
+    color: #ffffff;
+    border: 3px solid #c65052;
+    border-radius: 4px;
+    transition-duration: 0.3s;
+}
+
+#clear-btn:hover{
+    background-color: #823334;
+  color: white;
+}

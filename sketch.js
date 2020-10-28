@@ -33,10 +33,14 @@ function setup() {
     
     //clear sketch button
     clearSketchBtn = createButton('clear');
+    clearSketchBtn.id("clear-btn")
     clearSketchBtn.mousePressed(clearpg);
     clearSketchBtn.style('width', '80px');
     clearSketchBtn.style('height', '50px');
-
+//    clearSketchBtn.style('background-color', '#c65052');
+//    clearSketchBtn.style('color', '#ffffff');
+//    clearSketchBtn.style('border', 'none');
+//    clearSketchBtn.style('border-radius', '2px');
     
     //color picker - https://p5js.org/reference/#/p5/createColorPicker
     colorPicker = createColorPicker('#ff52ad');
@@ -98,6 +102,12 @@ function mouseDragged() {
         stroke(colorPicker.color());
       //reference to create drawing  - https://p5js.org/reference/#/p5/pmouseX
         line(mouseX, mouseY, pmouseX, pmouseY);
+        
+//        strokeWeight(1);
+//        stroke (colorPicker.color())
+//        fill(colorPicker.color())
+//        rect(80, 140, 20, 20);
+//        circle(90, 220, 20, 20);
     }
   
     if (mouseX > 145 && mouseX < width-15 && mouseY > 50 && mouseY < height-120 && radio1.value() === "eraser" ){
@@ -105,6 +115,14 @@ function mouseDragged() {
         strokeWeight(er_size_slider.value());
         stroke(255);
         line(mouseX, mouseY, pmouseX, pmouseY);
+        
+//        strokeWeight(1);
+//        stroke (colorPicker.color())
+//            if (fill_checkbox.checked()){
+//        fill(colorPicker.color());
+//    }else{fill(255);}
+//        rect(80, 140, 20, 20);
+//        circle(90, 220, 20, 20);
     }
 
 }
@@ -169,12 +187,30 @@ function draw() {
 //    print(mouseX, mouseY);
     //uncomment
 //    image(bkg_img, 0, 0);
+//    resposBar(); 
 
     bottomBar();
     textSize(font_size_sel.value());
 //    print(colorPicker.color()); 
     //print(text_arr);
 //    print(font_size_sel.value());
+    
+    
+    push();
+            strokeWeight(2);
+        stroke (colorPicker.color())
+            if (fill_checkbox.checked()){
+        fill(colorPicker.color());
+    }else{fill(255);}
+        rect(80, 140, 20, 20);
+        circle(90, 220, 20, 20);
+    
+//    rect(80, 140, 20, 20);
+//
+//    
+//    
+//    circle(90, 220, 20, 20);
+    pop();
     
     if(radio2.value() === "pen"){
         image(pen_img, 330, height-110);
@@ -186,7 +222,7 @@ function draw() {
     }
     else{
         image(pen_img, 330, height-100);
-        image(eraser_img, 210, height-95);     
+        image(eraser_img, 210, height-95);   
     }
 
     
@@ -199,23 +235,24 @@ function draw() {
 function resposBar() {
 
     
-    radio5.position(15, 50);
-    text_input.position(15, 70);
-    font_size_sel.position(15, 95);
+    radio5.position(17, 50);
+    text_input.position(20, 70);
+    font_size_sel.position(17, 95);
 
 
     //font_text.position(15, height-450);
 
   
     //radio3 - rect
-    radio3.position(10, height-280);  
-    rect_size_slider.position(5, height-260);
+    radio3.position(17, 140);  
+    rect_size_slider.position(17, 165);
+    
   
     
     
     //radio4 - circle
-    radio4.position(10, height-220);  
-    circle_size_slider.position(5, height-200);
+    radio4.position(17, 210);  
+    circle_size_slider.position(17, 235);
   
     //radio5 - triangle
 //    radio5.position(5, height-160);  
@@ -238,8 +275,8 @@ function resposBar() {
 //    pen_size_slider.position(265, height-50);
     
     
+    //clear btn
     clearSketchBtn.position(width-100, height-90);
-    
 
   
 }
