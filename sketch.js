@@ -33,7 +33,7 @@ function setup() {
     
     
     //clear sketch button
-    clearSketchBtn = createButton('clear');
+    clearSketchBtn = createButton('CLEAR');
     clearSketchBtn.id("clear-btn")
     clearSketchBtn.mousePressed(clearpg);
     clearSketchBtn.style('width', '80px');
